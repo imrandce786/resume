@@ -23,7 +23,7 @@
   <!-- Modern Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -103,47 +103,60 @@
       </div>
     </header>
 
-    <!-- Key Impact Metrics (KPI Showcase) -->
-    <section class="metrics-section" aria-label="Key Performance Indicators">
-      <div class="metrics-grid">
-        <div class="kpi-card kpi-primary">
-          <div class="kpi-accent-bar" aria-hidden="true"></div>
-          <div class="kpi-value-row">
-            <span class="kpi-number" data-target="20" data-prefix="-">-20</span>
-            <span class="kpi-unit">%</span>
-          </div>
-          <div class="kpi-label">Assembly Error Reduction</div>
-          <div class="kpi-context">Engineered strict SOPs & technical documentation</div>
+    <!-- Key Impact Metrics (KPI Showcase — Speedometer Gauges) -->
+    <section class="metrics-section" aria-label="Key Impact Metrics">
+      <div class="metrics-header-row">
+        <span class="metrics-tag">U2 — Impact Metrics</span>
+        <h2 class="metrics-heading">What the numbers say</h2>
+      </div>
+
+      <div class="gauges-grid">
+        <!-- Gauge 1: 20% Fewer assembly errors -->
+        <div class="gauge-card" data-pct="20">
+          <svg class="gauge-svg" viewBox="0 0 200 140" aria-hidden="true">
+            <path class="gauge-track" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <path class="gauge-fill" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <line class="gauge-needle" x1="100" y1="116" x2="34" y2="116"></line>
+            <circle class="gauge-hub" cx="100" cy="116" r="5"></circle>
+          </svg>
+          <div class="gauge-value"><span class="gauge-counter" data-target="20">20</span>%</div>
+          <div class="gauge-label">Fewer assembly errors</div>
         </div>
 
-        <div class="kpi-card kpi-success">
-          <div class="kpi-accent-bar" aria-hidden="true"></div>
-          <div class="kpi-value-row">
-            <span class="kpi-number" data-target="15" data-prefix="-">-15</span>
-            <span class="kpi-unit">%</span>
-          </div>
-          <div class="kpi-label">Machine Downtime Cut</div>
-          <div class="kpi-context">Instituted proactive preventive maintenance protocols</div>
+        <!-- Gauge 2: 15% Less equipment downtime -->
+        <div class="gauge-card" data-pct="15">
+          <svg class="gauge-svg" viewBox="0 0 200 140" aria-hidden="true">
+            <path class="gauge-track" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <path class="gauge-fill" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <line class="gauge-needle" x1="100" y1="116" x2="34" y2="116"></line>
+            <circle class="gauge-hub" cx="100" cy="116" r="5"></circle>
+          </svg>
+          <div class="gauge-value"><span class="gauge-counter" data-target="15">15</span>%</div>
+          <div class="gauge-label">Less equipment downtime</div>
         </div>
 
-        <div class="kpi-card kpi-gold">
-          <div class="kpi-accent-bar" aria-hidden="true"></div>
-          <div class="kpi-value-row">
-            <span class="kpi-number" data-target="99">99</span>
-            <span class="kpi-unit">%</span>
-          </div>
-          <div class="kpi-label">STQC / SQC Compliance</div>
-          <div class="kpi-context">Maintained across high-stakes EVM production lines</div>
+        <!-- Gauge 3: 99% STQC/SQC compliance -->
+        <div class="gauge-card" data-pct="99">
+          <svg class="gauge-svg" viewBox="0 0 200 140" aria-hidden="true">
+            <path class="gauge-track" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <path class="gauge-fill" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <line class="gauge-needle" x1="100" y1="116" x2="34" y2="116"></line>
+            <circle class="gauge-hub" cx="100" cy="116" r="5"></circle>
+          </svg>
+          <div class="gauge-value"><span class="gauge-counter" data-target="99">99</span>%</div>
+          <div class="gauge-label">STQC/SQC compliance</div>
         </div>
 
-        <div class="kpi-card kpi-primary">
-          <div class="kpi-accent-bar" aria-hidden="true"></div>
-          <div class="kpi-value-row">
-            <span class="kpi-number" data-target="30" data-prefix="+">+30</span>
-            <span class="kpi-unit">%</span>
-          </div>
-          <div class="kpi-label">Faster Issue Resolution</div>
-          <div class="kpi-context">Led 20+ member cross-functional engineering teams</div>
+        <!-- Gauge 4: 30% Faster issue response -->
+        <div class="gauge-card" data-pct="30">
+          <svg class="gauge-svg" viewBox="0 0 200 140" aria-hidden="true">
+            <path class="gauge-track" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <path class="gauge-fill" d="M 16,116 A 84,84 0 0,1 184,116"></path>
+            <line class="gauge-needle" x1="100" y1="116" x2="34" y2="116"></line>
+            <circle class="gauge-hub" cx="100" cy="116" r="5"></circle>
+          </svg>
+          <div class="gauge-value"><span class="gauge-counter" data-target="30">30</span>%</div>
+          <div class="gauge-label">Faster issue response</div>
         </div>
       </div>
     </section>

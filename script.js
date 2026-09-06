@@ -59,7 +59,7 @@
     }
   });
 
-  // 2. Animated Metric Counters
+  // 2. Animated Metric Counters & Speedometer Gauges
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const kpiNumbers = document.querySelectorAll('.kpi-number[data-target]');
 
@@ -110,6 +110,64 @@
     }
 
     requestAnimationFrame(update);
+  }
+
+  // 2b. Speedometer Gauges (Arc, Needle & Number animation)
+  const gauges = document.querySelectorAll('.gauge-card[data-pct], .gauge[data-pct]');
+  if (gauges.length > 0) {
+    gauges.forEach(gauge => {
+      const pct = parseFloat(gauge.getAttribute('data-pct')) || 0;
+      const fill = gauge.querySelector('.gauge-fill');
+      const needle = gauge.querySelector('.gauge-needle');
+      const counter = gauge.querySelector('.gauge-counter');
+
+      if (!fill || !needle) return;
+
+      const len = fill.getTotalLength ? fill.getTotalLength() : 263.89;
+      fill.style.strokeDasharray = len;
+      const targetOffset = len * (1 - pct / 100);
+      const targetRotation = pct * 1.8;
+
+      if (prefersReducedMotion) {
+        fill.style.transition = 'none';
+        needle.style.transition = 'none';
+        fill.style.strokeDashoffset = targetOffset;
+        needle.style.transform = `rotate(${targetRotation}deg)`;
+        if (counter) counter.textContent = pct;
+      } else {
+        fill.style.strokeDashoffset = len;
+        needle.style.transform = 'rotate(0deg)';
+
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              fill.style.strokeDashoffset = targetOffset;
+              needle.style.transform = `rotate(${targetRotation}deg)`;
+              if (counter) animateGaugeCounter(counter, pct);
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.25 });
+
+        io.observe(gauge);
+      }
+    });
+  }
+
+  function animateGaugeCounter(element, target) {
+    const duration = 1300;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      element.textContent = Math.round(target * ease);
+      if (p < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        element.textContent = target;
+      }
+    }
+    requestAnimationFrame(tick);
   }
 
   // 3. Skill Category Filtering
